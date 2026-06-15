@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MSKJ Arte & Decorações - Especialista em pintura residencial, comercial e acabamentos de alto padrão. Transformamos ambientes com excelência e sofisticação.">
+    <title>MSKJ Arte & Decorações | Pintura e Acabamentos Premium</title>
+    
+    <style>
+        /* 
+        ========================================
+        CONFIGURAÇÕES GERAIS E VARIÁVEIS
+        ========================================
+        */
+        :root {
+            --primary: #0a192f; /* Azul Escuro Profissional */
+            --secondary: #c5a059; /* Dourado Elegante */
+            --accent: #d4af37; /* Dourado Brilhante */
+            --white: #ffffff;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --dark-gray: #343a40;
+            --text-color: #333333;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* 
+        ========================================
+        HEADER & NAVIGATION
+        ========================================
+        */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: var(--white);
+            padding: 10px 0;
+            box-shadow: var(--shadow);
+        }
+
+        header.scrolled .logo h1 {
+            color: var(--primary);
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: var(--secondary);
+            z-index: 1001;
+            width: 0%;
+        }
+
+        /* 
+        ========================================
+        HERO SECTION
+        ========================================
+        */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1589939705384-5185138a047a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.8s;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.1s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 
+        ========================================
+        DIFFERENTIALS SECTION
+        ========================================
+        */
+        .differentials {
+            background-color: var(--light);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .diff-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .diff-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--secondary);
+        }
+
+        .diff-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(197, 160, 89, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--secondary);
+        }
+
+        .diff-icon svg {
+            width: 35px;
+            height: 35px;
+        }
+
+        .diff-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* 
+        ========================================
+        ABOUT SECTION
+        ========================================
+        */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            border-top: 5px solid var(--secondary);
+            border-left: 5px solid var(--secondary);
+            z-index: -1;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .mission-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .mv-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mv-item h4 svg {
+            width: 20px;
+            height: 20px;
+            color: var(--secondary);
+        }
+
+        /* 
+        ========================================
+        SERVICES SECTION
+        ========================================
+        */
+        .services {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .services .section-title h2 {
+            color: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary);
+        }
+
+        .service-icon {
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: #ccc;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 
+        ========================================
+        GALLERY SECTION
+        ========================================
+        */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 250px;
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            position: relative;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border: 5px solid var(--white);
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* 
+        ========================================
+        PROCESS SECTION
+        ========================================
+        */
+        .process {
+            background-color: var(--light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--secondary);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* 
+        ========================================
+        TESTIMONIALS SECTION
+        ========================================
+        */
+        .testimonials {
+            background-color: var(--white);
+            overflow: hidden;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 350px;
+        }
+
+        .testimonial-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .testimonial-item.active {
+            opacity: 1;
+            display: block;
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid var(--secondary);
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stars {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* 
+        ========================================
+        STATISTICS SECTION
+        ========================================
+        */
+        .stats {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1562664377-709f2c337eb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 80px 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 
+        ========================================
+        CTA SECTION
+        ========================================
+        */
+        .cta {
+            background-color: var(--secondary);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .btn-white {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        .cta .btn-white:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* 
+        ========================================
+        FOOTER
+        ========================================
+        */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 80px 20px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-about h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-about span {
+            color: var(--secondary);
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after, .footer-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .footer-contact svg {
+            color: var(--secondary);
+            width: 20px;
+            height: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 
+        ========================================
+        ANIMATIONS (SCROLL REVEAL)
+        ========================================
+        */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 
+        ========================================
+        RESPONSIVE DESIGN
+        ========================================
+        */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .about-container { flex-direction: column; }
+            .timeline::before { left: 40px; }
+            .timeline-item { width: 100%; text-align: left !absolute; padding-left: 80px; }
+            .timeline-item:nth-child(odd) { text-align: left; }
+            .timeline-item:nth-child(odd) .timeline-dot, 
+            .timeline-item:nth-child(even) .timeline-dot { left: 30px; }
+            .gallery-item.wide { grid-column: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hero h1 { font-size: 2.5rem; }
+            .hero-btns { flex-direction: column; }
+            .section-title h2 { font-size: 2rem; }
+            .nav-container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h1>MSKJ <span>Arte & Decorações</span></h1>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#gallery">Galeria</a></li>
+                <li><a href="#process">Processo</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Excelência em Pintura e Acabamentos de Alto Padrão</h1>
+            <p>Transformamos ambientes com sofisticação, técnica e materiais premium. A MSKJ Arte & Decorações é referência em qualidade para residências, comércios e condomínios.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Solicitar Orçamento</a>
+                <a href="https://wa.me/5500000000000" class="btn btn-outline" target="_blank">Falar no WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentials Section -->
+    <section class="differentials">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Por que nos escolher?</h2>
+                <p>Nossa dedicação aos detalhes e compromisso com a perfeição nos tornam a escolha ideal para o seu projeto.</p>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card reveal" style="transition-delay: 0.1s;">
+                    <div class="diff-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7L9 18l-5-5"/></svg>
+                    </div>
+                    <h3>Acabamento Impecável</h3>
+                    <p>Foco total nos mínimos detalhes para garantir um resultado liso e perfeito em cada centímetro.</p>
+                </div>
+                <div class="diff-card reveal" style="transition-delay: 0.2s;">
+                    <div class="diff-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Prazos Cumpridos</h3>
+                    <p>Respeitamos seu tempo. Planejamento rigoroso para entrega dentro do cronograma estabelecido.</p>
+                </div>
+                <div class="diff-card reveal" style="transition-delay: 0.3s;">
+                    <div class="diff-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Garantia de Qualidade</h3>
+                    <p>Utilizamos apenas materiais de primeira linha e técnicas avançadas para durabilidade extrema.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image reveal-left">
+                    <img src="https://images.unsplash.com/photo-1595844730298-b960ff98fee0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Equipe MSKJ trabalhando">
+                </div>
+                <div class="about-content reveal-right">
+                    <h2>Nossa História de Arte e Decoração</h2>
+                    <p>A MSKJ Arte & Decorações nasceu da paixão por transformar espaços em verdadeiras obras de arte. Com anos de experiência no mercado de alto padrão, consolidamos nossa marca através da confiança e satisfação de nossos clientes.</p>
+                    <p>Nossa missão é elevar o conceito de pintura, tratando cada parede como uma tela e cada projeto como uma oportunidade de superar expectativas.</p>
+                    
+                    <div class="mission-values">
+                        <div class="mv-item">
+                            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Missão</h4>
+                            <p>Proporcionar ambientes inspiradores através de acabamentos de excelência.</p>
+                        </div>
+                        <div class="mv-item">
+                            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Valores</h4>
+                            <p>Ética, transparência, limpeza absoluta e busca incessante pela perfeição.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Nossos Serviços Especializados</h2>
+                <p>Soluções completas para todas as suas necessidades de pintura e reforma estética.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>Pintura Residencial</h3>
+                    <p>Casas e apartamentos com acabamento refinado e cuidado total com seu mobiliário.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card reveal" style="transition-delay: 0.1s;">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <h3>Pintura Predial</h3>
+                    <p>Manutenção e revitalização de fachadas e áreas comuns de condomínios com segurança.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card reveal" style="transition-delay: 0.2s;">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    </div>
+                    <h3>Texturas Decorativas</h3>
+                    <p>Aplicação de texturas modernas, cimento queimado e efeitos especiais de alto luxo.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="service-card reveal" style="transition-delay: 0.3s;">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h3>Reformas Estéticas</h3>
+                    <p>Pequenos reparos, gesso e acabamentos que valorizam seu imóvel instantaneamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Portfólio de Projetos</h2>
+                <p>Conheça alguns dos nossos trabalhos mais recentes e inspire-se para o seu próximo projeto.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item wide reveal">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Sala de estar luxuosa">
+                    <div class="gallery-overlay">
+                        <h3>Residência Alpha</h3>
+                        <p>Pintura interna e acabamento em seda</p>
+                    </div>
+                </div>
+                <div class="gallery-item tall reveal">
+                    <img src="https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Parede com textura">
+                    <div class="gallery-overlay">
+                        <h3>Efeito Cimento Queimado</h3>
+                        <p>Loja Conceito Jardins</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fachada comercial">
+                    <div class="gallery-overlay">
+                        <h3>Fachada Corporativa</h3>
+                        <p>Revitalização externa</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Quarto moderno">
+                    <div class="gallery-overlay">
+                        <h3>Apartamento Premium</h3>
+                        <p>Cores neutras e elegantes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Como Trabalhamos</h2>
+                <p>Um processo organizado para garantir tranquilidade e resultados extraordinários.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>01. Visita Técnica</h3>
+                        <p>Analisamos o local, as superfícies e entendemos suas necessidades e preferências de cores.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>02. Planejamento</h3>
+                        <p>Elaboramos um cronograma detalhado e definimos os melhores materiais para o seu caso.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>03. Execução</h3>
+                        <p>Proteção total do ambiente, preparação das superfícies e aplicação técnica da pintura.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>04. Entrega Final</h3>
+                        <p>Limpeza pós-obra, inspeção minuciosa de qualidade e entrega do ambiente renovado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>O que nossos clientes dizem</h2>
+                <p>A satisfação de quem confiou em nosso trabalho é nossa maior recompensa.</p>
+            </div>
+            <div class="testimonial-slider reveal">
+                <div class="testimonial-item active">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"O trabalho da MSKJ superou todas as minhas expectativas. O acabamento é realmente diferenciado e a equipe foi extremamente limpa e organizada. Recomendo de olhos fechados!"</p>
+                    <div class="testimonial-author">Ricardo Silveira</div>
+                    <p>Proprietário Residencial</p>
+                </div>
+                <div class="testimonial-item">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Contratei para a pintura da minha clínica e o resultado ficou impecável. O cumprimento do prazo foi essencial para não atrasarmos nossa inauguração. Nota 10!"</p>
+                    <div class="testimonial-author">Dra. Amanda Costa</div>
+                    <p>Clínica Odontológica</p>
+                </div>
+                <div class="testimonial-item">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Referência absoluta em pintura predial. Como síndico, prezo pela segurança e qualidade, e a MSKJ entregou ambos com maestria na reforma do nosso condomínio."</p>
+                    <div class="testimonial-author">Marcos Oliveira</div>
+                    <p>Síndico Cond. Mirante</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h2 class="counter" data-target="1500">0</h2>
+                    <p>Projetos Concluídos</p>
+                </div>
+                <div class="stat-item">
+                    <h2 class="counter" data-target="1200">0</h2>
+                    <p>Clientes Satisfeitos</p>
+                </div>
+                <div class="stat-item">
+                    <h2 class="counter" data-target="15">0</h2>
+                    <p>Anos de Experiência</p>
+                </div>
+                <div class="stat-item">
+                    <h2 class="counter" data-target="100">0</h2>
+                    <p>% de Satisfação</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="reveal">
+                <h2>Pronto para valorizar seu imóvel?</h2>
+                <p>Solicite agora um orçamento sem compromisso e descubra como podemos transformar seu ambiente com o padrão MSKJ.</p>
+                <a href="https://wa.me/5500000000000" class="btn btn-white" target="_blank">Solicitar Orçamento Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>MSKJ <span>Arte & Decorações</span></h3>
+                    <p>Especialistas em transformar ambientes através da pintura e acabamentos de alto padrão. Qualidade que você vê, confiança que você sente.</p>
+                    <div class="social-links">
+                        <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#gallery">Portfólio</a></li>
+                        <li><a href="#process">Processo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (11) 99999-9999</p>
+                    <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> contato@mskj.com.br</p>
+                    <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> São Paulo, SP - Brasil</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MSKJ Arte & Decorações. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+
+    <!-- Lightbox Element -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        </div>
+    </div>
+
+    <script>
+        /* 
+        ========================================
+        CORE JAVASCRIPT
+        ========================================
+        */
+
+        // 1. Header Scroll Effect & Scroll Progress
+        const header = document.getElementById('header');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollPos / height) * 100;
+            
+            scrollIndicator.style.width = `${scrolled}%`;
+
+            if (scrollPos > 50) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('active');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('active');
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Animate hamburger to X
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
+            spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -7px)' : 'none';
+        });
+
+        // Close mobile menu when link clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const spans = mobileMenuBtn.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // 3. Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        
+        const revealOnScroll = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            reveals.forEach(reveal => {
+                const revealTop = reveal.getBoundingClientRect().top;
+                if (revealTop < triggerBottom) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // 4. Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const counterOptions = { threshold: 1, rootMargin: "0px 0px -50px 0px" };
+
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    const count = +entry.target.innerText;
+                    const speed = 200;
+                    const inc = target / speed;
+
+                    const updateCount = () => {
+                        const current = +entry.target.innerText;
+                        if (current < target) {
+                            entry.target.innerText = Math.ceil(current + inc);
+                            setTimeout(updateCount, 1);
+                        } else {
+                            entry.target.innerText = target + (target === 100 ? '%' : '');
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, counterOptions);
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // 5. Testimonial Slider
+        const testimonialItems = document.querySelectorAll('.testimonial-item');
+        let currentTestimonial = 0;
+
+        const nextTestimonial = () => {
+            testimonialItems[currentTestimonial].classList.remove('active');
+            testimonialItems[currentTestimonial].style.display = 'none';
+            
+            currentTestimonial = (currentTestimonial + 1) % testimonialItems.length;
+            
+            testimonialItems[currentTestimonial].style.display = 'block';
+            setTimeout(() => {
+                testimonialItems[currentTestimonial].classList.add('active');
+            }, 50);
+        };
+
+        setInterval(nextTestimonial, 5000);
+
+        // 6. Lightbox Gallery
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // 7. Ripple Effect on Buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+                let ripples = document.createElement('span');
+                ripples.className = 'ripple';
+                ripples.style.left = x + 'px';
+                ripples.style.top = y + 'px';
+                this.appendChild(ripples);
+                setTimeout(() => { ripples.remove() }, 600);
+            });
+        });
+
+        // 8. Back to Top Click
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+    </script>
+</body>
+</html>
